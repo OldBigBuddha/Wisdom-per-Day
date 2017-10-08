@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
     android:layout_marginTop="4dp"
     android:layout_marginEnd="4dp"
@@ -13,15 +13,18 @@
     <TextView
         android:id="@+id/tv_content"
         android:text="Hoge"
+        android:textSize="24sp"
         android:layout_width="0dp"
-        android:layout_weight="5"
+        android:layout_weight="3"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="left"
+        android:paddingStart="16dp"
         android:paddingEnd="8dp"/>
 
     <TextView
         android:id="@+id/tv_date"
         android:text="XXXX/XX/XX"
+        android:textSize="18sp"
         android:layout_width="0dp"
         android:layout_weight="2"
         android:layout_height="match_parent"

@@ -2,13 +2,13 @@ package kyoto.freeprojects.oldbigbuddha.wisdom_per_day;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.text.SimpleDateFormat;
 
-import io.realm.Realm;
 import io.realm.RealmResults;
 import kyoto.freeprojects.oldbigbuddha.wisdom_per_day.databinding.ItemBinding;
 
@@ -21,18 +21,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     private RealmResults<Item> mResults;
 
     public CustomAdapter(RealmResults<Item> results) {
-        super();
+        Log.d("Adapter", "Start");
         mResults = results;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d("Adapter", "onCreateViewHolder");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        Log.d("Adapter", "onBindViewHolder");
         final Item item = mResults.get(position);
         holder.getBinding().tvContent.setText( item.getContent() );
         holder.getBinding().tvDate.setText( formatData( item.getCreatedDate() ) );
@@ -41,6 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
+        Log.d("Adapter", "getItemCount");
         if (mResults == null) {
             return 0;
         }
@@ -48,7 +51,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
 
     private String formatData(long data) {
-        return new SimpleDateFormat("yyyy/MM/dd HH:mm").format(data);
+        return new SimpleDateFormat("yyyy/MM/dd").format(data);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

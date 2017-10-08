@@ -3,6 +3,7 @@ package kyoto.freeprojects.oldbigbuddha.wisdom_per_day;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        mBinding.recyclerItemList.setLayoutManager(manager);
         mBinding.recyclerItemList.setAdapter(mAdapter);
     }
 }
