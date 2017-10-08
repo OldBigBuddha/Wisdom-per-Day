@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Wisdom-per-Day</string>
     <string name="bt_add_content_text">Add</string>
+
+    <string name="title_activity_listen_wisdom">ListenWisdomActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

@@ -38,5 +38,11 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
+    <Button
+        android:id="@+id/bt_go_listen"
+        android:textSize="24sp"
+        android:text="Go"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
 </layout>
