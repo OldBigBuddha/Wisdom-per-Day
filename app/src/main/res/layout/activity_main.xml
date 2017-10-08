@@ -9,17 +9,34 @@
     android:layout_marginEnd="4dp"
     android:layout_marginBottom="8dp" >
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/tv_alarm_date"
+            android:text="XX:XX"
+            android:textColor="#000"
+            android:textSize="36sp"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+        <Button
+            android:id="@+id/bt_edit_date"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Edit"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_item_list"
         android:layout_width="match_parent"
         android:layout_height="0dp" 
         android:layout_weight="7"/>
-
-    <Button
-        android:id="@+id/bt_go_listen"
-        android:textSize="24sp"
-        android:text="Go"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>
 </layout>
