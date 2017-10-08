@@ -25,7 +25,9 @@ import kyoto.freeprojects.oldbigbuddha.wisdom_per_day.databinding.ActivityMainBi
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int REQUEST_CODE = 0;
+    public static final int REQUEST_CODE_ONE = 1;
+    public static final int REQUEST_CODE_TWO = 2;
+    private boolean isCodeOne;
 
     private ActivityMainBinding mBinding;
 
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mSettings = getSharedPreferences("setting", Context.MODE_PRIVATE);
         mEditor   = mSettings.edit();
+
+        isCodeOne = mSettings.getBoolean("isCodeOne", false);
 
         now = Calendar.getInstance();
         if(!AppLaunchChecker.hasStartedFromLauncher(this)){
@@ -95,23 +99,36 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
 
-        Intent intent = new Intent(MainActivity.this, ListenWisdomActivity.class);
-        PendingIntent pending = PendingIntent.getActivity(MainActivity.this, REQUEST_CODE, intent, 0);
-        AlarmManager manager = (AlarmManager)MainActivity.this.getSystemService(Context.ALARM_SERVICE);
-
-        pending.cancel();
-        manager.cancel(pending);
-
-        manager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY , pending);
+        Intent        intent  = new Intent(MainActivity.this, ListenWisdomActivity.class);
+        PendingIntent pending1 = PendingIntent.getActivity(MainActivity.this, REQUEST_CODE_ONE, intent, 0);
+        PendingIntent pending2 = PendingIntent.getActivity(MainActivity.this, REQUEST_CODE_TWO, intent, 0);
+        if (isCodeOne) {
+            setPending(pending2, pending1, calendar);
+        } else {
+            setPending(pending1, pending2, calendar);
+        }
         mBinding.tvAlarmDate.setText( formatData(hour,minute) );
+
+        isCodeOne = !isCodeOne;
+        mEditor.putBoolean("isCodeOne", isCodeOne);
+        mEditor.putLong("time", calendar.getTimeInMillis());
+        mEditor.commit();
     }
 
+    private void setPending(PendingIntent set, PendingIntent cancel, Calendar c) {
+        cancel.cancel();
+        AlarmManager manager = (AlarmManager)MainActivity.this.getSystemService(Context.ALARM_SERVICE);
+        manager.cancel(cancel);
+
+        manager.setRepeating(AlarmManager.RTC, c.getTimeInMillis(), AlarmManager.INTERVAL_DAY, set);
+
+    }
 
     private String formatData(int hour, int minute) {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, hour);
         c.set(Calendar.MINUTE, minute);
-        return new SimpleDateFormat("HH:MM").format(c.getTime());
+        return new SimpleDateFormat("HH:mm").format(c.getTime());
     }
 
 

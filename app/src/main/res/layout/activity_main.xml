@@ -20,7 +20,7 @@
             android:textColor="#000"
             android:textSize="36sp"
             android:layout_width="0dp"
-            android:layout_weight="6"
+            android:layout_weight="4"
             android:layout_height="match_parent"
             android:gravity="center"/>
         <Button
