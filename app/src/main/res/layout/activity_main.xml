@@ -14,30 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" 
         android:layout_weight="7"/>
-    
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" 
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp" >
-        <EditText
-            android:id="@+id/et_field_content"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />
-        
-        <Button
-            android:id="@+id/bt_add_content"
-            android:text="@string/bt_add_content_text"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />
 
-    </LinearLayout>
     <Button
         android:id="@+id/bt_go_listen"
         android:textSize="24sp"

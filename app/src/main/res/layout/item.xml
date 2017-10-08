@@ -13,20 +13,21 @@
     <TextView
         android:id="@+id/tv_content"
         android:text="Hoge"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:layout_width="0dp"
         android:layout_weight="3"
         android:layout_height="match_parent"
         android:gravity="left"
-        android:paddingStart="16dp"
-        android:paddingEnd="8dp"/>
+        android:paddingStart="4dp"
+        android:paddingEnd="8dp"
+        android:textColor="#000"/>
 
     <TextView
         android:id="@+id/tv_date"
         android:text="XXXX/XX/XX"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:layout_width="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:layout_height="match_parent"
         android:gravity="end|bottom"/>
 

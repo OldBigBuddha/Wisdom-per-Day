@@ -42,6 +42,7 @@ public class ListenAlertFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         mListener.OnClickPositiveButton(mBinding.etFieldWisdom.getText().toString());
+
                         getActivity().finish();
                     }
                 });

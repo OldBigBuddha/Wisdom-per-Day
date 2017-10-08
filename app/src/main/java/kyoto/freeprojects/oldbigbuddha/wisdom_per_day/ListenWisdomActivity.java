@@ -7,21 +7,32 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import io.realm.Realm;
 import kyoto.freeprojects.oldbigbuddha.wisdom_per_day.databinding.ActivityListenWisdomBinding;
 
 public class ListenWisdomActivity extends FragmentActivity {
 
     private ActivityListenWisdomBinding mBinding;
+    private Realm mRealm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_listen_wisdom);
+        mRealm = Realm.getDefaultInstance();
+
         ListenAlertFragment fragment = new ListenAlertFragment();
         fragment.setListener(new ListenAlertFragment.ListenDialogInterface() {
             @Override
             public void OnClickPositiveButton(String wisdom) {
                 Log.d("OnClickPositive", wisdom);
+                long date = System.currentTimeMillis();
+
+                Item item = new Item(wisdom, date);
+                mRealm.beginTransaction();
+                mRealm.copyToRealm(item);
+                mRealm.commitTransaction();
+
             }
         });
         fragment.show(getFragmentManager(), "ListenWisdomDialog");
